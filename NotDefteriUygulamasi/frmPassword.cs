@@ -21,11 +21,9 @@ namespace NotDefteriUygulamasi
         public frmPassword( User _user)
         {
             InitializeComponent();
-            dbContext = NoteContext.GetInstance();
             user = _user;
             userManagement = new UserManagement();
         }
-        NoteContext dbContext;
         User user;
         UserManagement userManagement;
       

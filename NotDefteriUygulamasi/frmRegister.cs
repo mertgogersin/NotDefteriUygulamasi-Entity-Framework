@@ -15,12 +15,10 @@ namespace NotDefteriUygulamasi
     {
         public frmRegister()
         {
-            InitializeComponent();
-            dbContext = NoteContext.GetInstance();
+            InitializeComponent();          
             userManagement = new UserManagement();
         }
-       
-        NoteContext dbContext;
+
         UserManagement userManagement;
         private void btnSave_Click(object sender, EventArgs e)
         {

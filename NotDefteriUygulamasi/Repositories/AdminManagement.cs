@@ -43,5 +43,11 @@ namespace NotDefteriUygulamasi.Repositories
             dbContext.UserPasswords.Add(userPassword);
             dbContext.SaveChanges();
         }
+        List<User> users=new List<User>();
+        public List<User> GetUnVerifiedUsers()
+        {
+            users=dbContext.Users.Where(x => x.IsVerified == false).ToList();
+            return users;
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace NotDefteriUygulamasi.Repositories
             {
                 throw new Exception("Başlık boş olamaz.");
             }
-            foreach (Note item in dbContext.Notes.Where(x => x.UserID == user.UserID).ToList())
+            foreach (Note item in GetNotesByUserID(user.UserID))
             {
                 if (item.Header == _header)
                 {
@@ -49,7 +49,7 @@ namespace NotDefteriUygulamasi.Repositories
         }
         public void UpdateNote(Note note, string _header, string _description)
         {
-            foreach (Note item in dbContext.Notes.Where(x => x.UserID == note.UserID))
+            foreach (Note item in GetNotesByUserID(note.UserID))
             {
                 if (item.Header != note.Header && item.Header == _header)
                 {
@@ -59,6 +59,12 @@ namespace NotDefteriUygulamasi.Repositories
             note.Header = _header;
             note.Description = _description;
             dbContext.SaveChanges();
+        }
+        List<Note> notes =new List<Note>();
+        public List<Note> GetNotesByUserID(int userID)
+        {           
+            notes=dbContext.Notes.Where(x => x.UserID == userID).ToList();
+            return notes;
         }
     }
 }

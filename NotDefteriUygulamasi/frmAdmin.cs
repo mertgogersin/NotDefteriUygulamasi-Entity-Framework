@@ -18,11 +18,9 @@ namespace NotDefteriUygulamasi
         public frmAdmin()
         {
             InitializeComponent();
-            dbContext = NoteContext.GetInstance();
             users = new List<User>();
             adminManagement = new AdminManagement();
         }
-        NoteContext dbContext;
         List<User> users;
         AdminManagement adminManagement;
         private void frmAdmin_Load(object sender, EventArgs e)
@@ -33,7 +31,7 @@ namespace NotDefteriUygulamasi
         {
             users.Clear();
             lstPassiveUsers.Items.Clear();
-            users = dbContext.Users.Where(x => x.IsVerified == false).ToList();
+            users = adminManagement.GetUnVerifiedUsers();
             int i = 0;
             foreach (User item in users)
             {

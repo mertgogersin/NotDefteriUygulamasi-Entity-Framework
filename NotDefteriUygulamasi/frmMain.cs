@@ -21,17 +21,13 @@ namespace NotDefteriUygulamasi
         }
         public frmMain(User _user)
         {
-            InitializeComponent();
-            dbContext = NoteContext.GetInstance();
-            user = _user;
-            notes = new List<Note>();
+            InitializeComponent();           
+            user = _user;         
             noteManagement = new NoteManagement();
             note = new Note();
-        }
-        NoteContext dbContext;
+        }      
         User user;
-        Note note;
-        List<Note> notes;
+        Note note;      
         NoteManagement noteManagement;
         bool newNoteCheck;
         private void frmMain_Load(object sender, EventArgs e)
@@ -41,11 +37,9 @@ namespace NotDefteriUygulamasi
             FillList();
         }
         public void FillList()
-        {
-            notes.Clear();
-            lbNoteHeaders.Items.Clear();
-            notes = dbContext.Notes.Where(x => x.UserID == user.UserID).ToList();
-            foreach (Note item in notes)
+        {            
+            lbNoteHeaders.Items.Clear();            
+            foreach (Note item in noteManagement.GetNotesByUserID(user.UserID))
             {
                 lbNoteHeaders.Items.Add(item);//toString() override edip direkt classı attım.(dataSource ile de yapılabilir.)
             }
