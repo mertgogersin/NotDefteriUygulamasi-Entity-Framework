@@ -15,6 +15,19 @@ namespace NotDefteriUygulamasi
         private NoteContext() : base("connectionString")
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<NoteContext>());
+
+            if (Users.All(x => x.UserName != "mertgogersin")) //to initiate creation of db
+            {
+                User user = new User()
+                {
+                    Name = "Mert",
+                    SurName = "Gogersin",
+                    UserName = "mertgogersin",
+                    Password = "123"
+                };
+                Users.Add(user);
+                SaveChanges();
+            }
         }
         public static NoteContext GetInstance()
         {

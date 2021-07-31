@@ -17,8 +17,7 @@ namespace NotDefteriUygulamasi
         {
             InitializeComponent();          
             userManagement = new UserManagement();
-        }
-
+        }      
         UserManagement userManagement;
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -27,8 +26,7 @@ namespace NotDefteriUygulamasi
                 if (txtPassword.Text.Trim() == txtPasswordAgain.Text.Trim())
                 {
                     userManagement.UserSignUp(txtName.Text, txtSurName.Text, txtUserName.Text, txtPassword.Text);
-                    MessageBox.Show("Kaydınız başarıyla oluşturulmuştur.");
-                    this.Close();
+                    MessageBox.Show("Kaydınız başarıyla oluşturulmuştur.");                
                 }
                 else
                 {
@@ -39,8 +37,8 @@ namespace NotDefteriUygulamasi
             {
                 MessageBox.Show(ex.Message);
             }
-
+            ClearControl.Clear(this);
         }
-
+        
     }
 }

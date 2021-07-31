@@ -17,11 +17,10 @@ namespace NotDefteriUygulamasi
         public frmLogin()
         {
             InitializeComponent();
-            dbContext = NoteContext.GetInstance();
             adminManagement = new AdminManagement();
             userManagement = new UserManagement();
         }
-        NoteContext dbContext;
+ 
         AdminManagement adminManagement;
         UserManagement userManagement;
         private void btnLogin_Click(object sender, EventArgs e)
@@ -43,6 +42,7 @@ namespace NotDefteriUygulamasi
                     MessageBox.Show(ex.Message);
                 }
             }
+            ClearControl.Clear(this);
         }
         private void OpenForm(Form frm)
         {
@@ -54,23 +54,6 @@ namespace NotDefteriUygulamasi
         private void lnkSignUp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             OpenForm(new frmRegister());
-        }
-
-
-        private void frmLogin_Load_1(object sender, EventArgs e)
-        {
-            if (dbContext.Users.All(x => x.UserName != "mertgogersin")) //to initiate creation of db
-            {
-                User user = new User()
-                {
-                    Name = "Mert",
-                    SurName = "Gogersin",
-                    UserName = "mertgogersin",
-                    Password = "123"
-                };
-                dbContext.Users.Add(user);
-                dbContext.SaveChanges();
-            }
-        }
+        }    
     }
 }

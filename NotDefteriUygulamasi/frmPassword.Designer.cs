@@ -72,6 +72,7 @@ namespace NotDefteriUygulamasi
             this.txtOldPassword.Name = "txtOldPassword";
             this.txtOldPassword.Size = new System.Drawing.Size(249, 26);
             this.txtOldPassword.TabIndex = 3;
+            this.txtOldPassword.UseSystemPasswordChar = true;
             // 
             // txtNewPassword
             // 

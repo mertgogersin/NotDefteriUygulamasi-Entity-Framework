@@ -18,11 +18,11 @@ namespace NotDefteriUygulamasi
         {
             InitializeComponent();
         }
-        public frmPassword( User _user)
+        public frmPassword(User _user)
         {
             InitializeComponent();
             user = _user;
-            userManagement = new UserManagement();
+            userManagement = new UserManagement();         
         }
         User user;
         UserManagement userManagement;
@@ -33,8 +33,10 @@ namespace NotDefteriUygulamasi
             {
                 if (txtNewPassword.Text.Trim() == txtRewriteNewPassword.Text.Trim())
                 {
-                    userManagement.ChangePassword(user, txtNewPassword.Text);
-                    MessageBox.Show("Şifreniz başarıyla değiştirildi.");
+                    userManagement.ChangePassword(user.UserID, txtNewPassword.Text);
+                    MessageBox.Show("Şifreniz başarıyla değiştirildi. Tekrar oturumunuzu açmanız gerekmektedir. Giriş sayfasına yönlendiriliyorsunuz...");
+                    
+                    this.Close();
                 }
                 else
                 {
@@ -45,6 +47,7 @@ namespace NotDefteriUygulamasi
             {
                 MessageBox.Show(ex.Message);
             }
+            ClearControl.Clear(this);
         }
 
         

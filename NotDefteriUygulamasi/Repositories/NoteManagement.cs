@@ -13,6 +13,7 @@ namespace NotDefteriUygulamasi.Repositories
         {
             dbContext = NoteContext.GetInstance();
         }
+       
         NoteContext dbContext;
         public void AddNote(User user, string _header, string _description)
         {

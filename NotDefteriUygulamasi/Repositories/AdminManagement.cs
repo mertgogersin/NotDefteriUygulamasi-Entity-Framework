@@ -13,6 +13,7 @@ namespace NotDefteriUygulamasi.Repositories
         {
             dbContext = NoteContext.GetInstance();
         }
+       
         NoteContext dbContext;
         public bool AdminLogin(string userName, string password)
         {

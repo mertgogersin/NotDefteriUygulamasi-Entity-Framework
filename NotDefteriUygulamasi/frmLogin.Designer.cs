@@ -119,7 +119,6 @@ namespace NotDefteriUygulamasi
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmLogin";
             this.Text = "frmLogin";
-            this.Load += new System.EventHandler(this.frmLogin_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -21,6 +21,7 @@ namespace NotDefteriUygulamasi
             users = new List<User>();
             adminManagement = new AdminManagement();
         }
+        
         List<User> users;
         AdminManagement adminManagement;
         private void frmAdmin_Load(object sender, EventArgs e)

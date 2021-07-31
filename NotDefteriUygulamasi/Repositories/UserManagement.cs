@@ -42,31 +42,28 @@ namespace NotDefteriUygulamasi.Repositories
         {
             List<User> users = dbContext.Users.Where(x => x.UserName == userName).ToList();
             User user = new User();
-            if (users.Count != 0)
+            if (users.Count == 0)
             {
-                user = users[0];
+                throw new Exception("Kullanıcı adı ya da şifreniz yanlış, lütfen tekrar deneyiniz.");
             }
-            if (user != null && user.Password == password)
+            user = users[0];
+            List<UserPassword> passwords = dbContext.UserPasswords.Where(x => x.UserID == user.UserID).OrderByDescending(x => x.VerifiedDate).Take(1).ToList();
+            if (passwords[0].Password != password)
             {
-                if (user.IsVerified == true)
-                {
-                    return user;
-                }
-                else
-                {
-                    throw new Exception("Hesabınız henüz onaylanmamıştır.");
-                }
+                throw new Exception("Kullanıcı adı ya da şifreniz yanlış, lütfen tekrar deneyiniz.");
             }
-            else
+            if (!user.IsVerified)
             {
-                throw new Exception("Kullanıcı bilgileriniz yanlış ya da kayıtlı değil, lütfen tekrar deneyiniz.");
+                throw new Exception("Hesabınız henüz onaylanmamıştır.");
             }
+            return user;
         }
 
-        public void ChangePassword(User user, string newPassword)
+        public void ChangePassword(int userID, string newPassword)
         {
+            User user = dbContext.Users.Find(userID);
             var result = (from p in dbContext.UserPasswords
-                          where p.UserID == user.UserID
+                          where p.UserID == userID
                           orderby p.VerifiedDate descending
                           select p).Take(3).ToList();
 
@@ -80,10 +77,9 @@ namespace NotDefteriUygulamasi.Repositories
                 }
 
             }
-
             UserPassword userPassword = new UserPassword()
             {
-                UserID = user.UserID,
+                UserID = userID,
                 Password = newPassword,
                 VerifiedDate = DateTime.Now
             };
@@ -91,7 +87,5 @@ namespace NotDefteriUygulamasi.Repositories
             user.Password = newPassword;
             dbContext.SaveChanges();
         }
-
-
     }
 }
