@@ -29,6 +29,7 @@ namespace NotDefteriUygulamasi
                 if (txtPassword.Text.Trim() == txtPasswordAgain.Text.Trim())
                 {
                     userManagement.UserSignUp(txtName.Text, txtSurName.Text, txtUserName.Text, txtPassword.Text);
+                    MessageBox.Show("Kaydınız başarıyla oluşturulmuştur.");
                     this.Close();
                 }
                 else

@@ -98,7 +98,7 @@ namespace NotDefteriUygulamasi
 
         private void lbNoteHeaders_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            note = (Note)lbNoteHeaders.SelectedItem;
+            note = (Note)lbNoteHeaders.SelectedItem; //listbox'a class attığım için SelectedItem ile çekebildim
             txtHeader.Visible = true;
             txtNote.Visible = true;
             newNoteCheck = false;

@@ -12,6 +12,6 @@ namespace NotDefteriUygulamasi.Entities
         public int UserID { get; set; }
         public User User { get; set; }
         public string Password { get; set; }
-        public DateTime? VerifiedDate { get; set; }
+        public DateTime VerifiedDate { get; set; }
     }
 }

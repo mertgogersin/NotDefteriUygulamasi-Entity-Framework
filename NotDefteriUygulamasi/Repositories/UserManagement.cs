@@ -17,11 +17,11 @@ namespace NotDefteriUygulamasi.Repositories
 
         public void UserSignUp(string name, string surName, string userName, string password)
         {
-            if (name == "" || surName == "" || userName == "" || password == "")
+            if (name == "" || surName == "" || userName == "" || password == "")//Burayı hocaya sor!! Ne kadar constraint koysam da bazen db ye boş veri ekleyebiliyordu. Bu yüzden bu kontrolü koymak zorunda kaldım.
             {
                 throw new Exception("Lütfen bilgilerinizi doğru giriniz.");
             }
-            else if(dbContext.Users.Any(x=>x.UserName==userName))
+            else if (dbContext.Users.Any(x => x.UserName == userName))
             {
                 throw new Exception("Bu kullanıcı adına ait bir kullanıcı bulunmaktadır.");
             }
@@ -70,28 +70,26 @@ namespace NotDefteriUygulamasi.Repositories
                           orderby p.VerifiedDate descending
                           select p).Take(3).ToList();
 
-            bool passwordCheck = false;
+
             foreach (var item in result)
             {
                 if (item.Password == newPassword)
                 {
-                    passwordCheck = false;
+
                     throw new Exception("Şifreniz son üç şifrenizle aynı olamaz.");
                 }
-                passwordCheck = true;
+
             }
-            if (passwordCheck)
+
+            UserPassword userPassword = new UserPassword()
             {
-                UserPassword userPassword = new UserPassword()
-                {
-                    UserID = user.UserID,
-                    Password = newPassword,
-                    VerifiedDate = DateTime.Now
-                };
-                dbContext.UserPasswords.Add(userPassword);
-                user.Password = newPassword;
-                dbContext.SaveChanges();
-            }
+                UserID = user.UserID,
+                Password = newPassword,
+                VerifiedDate = DateTime.Now
+            };
+            dbContext.UserPasswords.Add(userPassword);
+            user.Password = newPassword;
+            dbContext.SaveChanges();
         }
 
 

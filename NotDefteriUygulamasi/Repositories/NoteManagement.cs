@@ -40,7 +40,7 @@ namespace NotDefteriUygulamasi.Repositories
         }
         public void DeleteNote(int noteID)
         {
-            Note note = dbContext.Notes.Find(noteID);
+            Note note = dbContext.Notes.Find(noteID); //Direkt note class'ını parametre olarak attığımda EF, class'ın database'den ayrı olarak çalıştığını görüyor. O yüzden bu yöntem ile çözüme ulaştım.
             if (note == null)
                 throw new Exception("Bir hata oluştu.");
 

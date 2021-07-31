@@ -59,7 +59,7 @@ namespace NotDefteriUygulamasi
 
         private void frmLogin_Load_1(object sender, EventArgs e)
         {
-            if (dbContext.Users.All(x => x.UserName != "mertgogersin"))
+            if (dbContext.Users.All(x => x.UserName != "mertgogersin")) //to initiate creation of db
             {
                 User user = new User()
                 {

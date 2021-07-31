@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NotDefteriUygulamasi
 {
-    public class NoteContext : DbContext
+    public class NoteContext : DbContext //singleton design pattern uygulandı.
     {
        private static NoteContext instance;
         private NoteContext() : base("connectionString")
